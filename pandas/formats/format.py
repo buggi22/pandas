@@ -733,13 +733,7 @@ class DataFrameFormatter(TableFormatter):
 
             str_columns = [list(x) for x in zip(*str_columns)]
         else:
-            fmt_columns = columns.format()
-            dtypes = self.frame.dtypes
-            need_leadsp = dict(zip(fmt_columns, map(is_numeric_dtype, dtypes)))
-            str_columns = [[x if not self._get_formatter(i) and
-                            need_leadsp[x] else x]
-                           for i, (col, x) in enumerate(zip(columns,
-                                                            fmt_columns))]
+            str_columns = [[x] for x in columns.format()]
 
         if self.show_index_names and self.has_index_names:
             for x in str_columns:
